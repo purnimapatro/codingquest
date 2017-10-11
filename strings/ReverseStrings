@@ -1,0 +1,61 @@
+import java.io.*;
+import java.util.*;
+
+/* 
+*  Naive implementation of string 
+*  reverse and reversing
+*  individual words in a sentence.
+*/
+
+class ReverseStrings {
+    void reverseWord(char[] ip) {
+        int len = ip.length;
+        int hi = len - 1;
+        char temp;
+        for (int i = 0; i < len/2; i++) {
+            temp = ip[i];
+            ip[i] = ip[hi];
+            ip[hi] = temp;
+            hi--;
+        }
+    }
+    
+    void reverseWords(String s) {
+        String[] list = s.split(" ");
+        int j = list.length - 1;
+        String temp;
+        for (int i = 0; i < list.length/2; i++, j--) {
+            temp = list[i];
+            list[i] = list[j];
+            list[j] = temp;
+        }
+        StringBuilder sb = new StringBuilder();
+        for (String t: list) {
+            sb.append(t);
+            sb.append(" ");
+        }
+        System.out.println(sb);
+    }
+    
+    public static void main(String[] args) {
+        ReverseStrings rs = new ReverseStrings();
+        String test = "abcde";
+        char[] chars = test.toCharArray();
+        System.out.println("Before reverse: ");
+        for (char c : chars) {
+            System.out.print(c);
+        }
+        System.out.println();
+        rs.reverseWord(chars);
+        System.out.println("After reverse: ");
+        for (char c : chars) {
+            System.out.print(c);
+        }
+        System.out.println();
+        
+        String testSentence = "reversed be to happy am I";
+        System.out.println("Before word reverse: " + testSentence);
+        System.out.println("After word reverse: ");
+        rs.reverseWords(testSentence);
+    }
+}
